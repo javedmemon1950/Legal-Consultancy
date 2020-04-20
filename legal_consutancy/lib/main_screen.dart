@@ -11,12 +11,9 @@ class _MainScreenOfAppState extends State<MainScreenOfApp> {
   Widget build(BuildContext context) {
 
     Widget catagoriesListItem(String str){
-      return 
-      ListTile(
-        title: Text('Title'),
-        subtitle: Text('Sub-title'),
-        leading: Text('leading leading leading leading leading'),
-        trailing: Text('Trailing'),
+      return ListTile(
+        leading: Text(str),
+        trailing: Icon(Icons.arrow_right),
         dense: true,
         enabled: true,
         selected: true,
@@ -28,7 +25,19 @@ class _MainScreenOfAppState extends State<MainScreenOfApp> {
     return Container(
       child: Scaffold(
         appBar: AppBar(title: Text('Categories'),),
-        body: catagoriesListItem('sd'),
+        body: Column(
+          children: <Widget>[
+            catagoriesListItem('Banking'),
+            catagoriesListItem('Business'),
+            catagoriesListItem('Civil'),
+            catagoriesListItem('Criminal'),
+            catagoriesListItem('Cyber Crime'),
+            catagoriesListItem('Divorse'),
+            catagoriesListItem('Finance'),
+            catagoriesListItem('Tax'),
+            catagoriesListItem('Other')
+          ],
+        ),
       )
     );
   }
