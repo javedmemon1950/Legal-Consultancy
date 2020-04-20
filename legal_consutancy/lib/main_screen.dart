@@ -9,8 +9,26 @@ class MainScreenOfApp extends StatefulWidget {
 class _MainScreenOfAppState extends State<MainScreenOfApp> {
   @override
   Widget build(BuildContext context) {
+
+    Widget catagoriesListItem(String str){
+      return ListTile(
+        title: Text('Title'),
+        subtitle: Text('Sub-title'),
+        leading: Text('leading leading leading leading leading'),
+        trailing: Text('Trailing'),
+        dense: true,
+        enabled: true,
+        selected: true,
+        isThreeLine: true,
+
+      );
+    }
+
     return Container(
-      child: Scaffold()
+      child: Scaffold(
+        appBar: AppBar(title: Text('Categories'),),
+        body: catagoriesListItem('sd'),
+      )
     );
   }
 }
