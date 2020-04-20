@@ -11,7 +11,8 @@ class _MainScreenOfAppState extends State<MainScreenOfApp> {
   Widget build(BuildContext context) {
 
     Widget catagoriesListItem(String str){
-      return ListTile(
+      return 
+      ListTile(
         title: Text('Title'),
         subtitle: Text('Sub-title'),
         leading: Text('leading leading leading leading leading'),
