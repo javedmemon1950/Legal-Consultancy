@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+//import 'package:legal_consutancy/prifile_screen.dart';
 import 'login.dart';
 import 'signup.dart';
 import 'main_screen.dart';
@@ -16,8 +17,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Legal Consultancy',
-      //home: loginScreen(),
-      home: MainScreenOfApp(),
+      home: loginScreen(),
     );
   }
 }
