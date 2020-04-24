@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Legal Consultancy',
-      //home: loginScreen(),
-      home: consultantProfile(),
+      home: loginScreen(),
+      //home: consultantProfile(),
     );
   }
 }
