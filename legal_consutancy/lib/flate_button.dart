@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget flatButton(String str) {
+Widget flateButton(String str) {
   return Container(
     width: 300.0,
     child: Text(
