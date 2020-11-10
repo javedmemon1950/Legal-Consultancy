@@ -11,7 +11,7 @@ import 'package:flutter/cupertino.dart'
         StatefulWidget,
         Widget;
 import 'package:flutter/material.dart';
-import 'package:legal_consutancy/signup.dart';
+import 'package:legal_consutancy/screens/signup.dart';
 import 'main_screen.dart';
 
 class loginScreen extends StatefulWidget {
