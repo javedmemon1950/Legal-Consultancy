@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 Widget flateButton(String str) {
-  return Container(
-    width: 300.0,
+  return FlatButton(
     child: Text(
       str,
       textAlign: TextAlign.left,
