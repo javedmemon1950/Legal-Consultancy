@@ -11,8 +11,8 @@ import 'package:flutter/cupertino.dart'
         StatefulWidget,
         Widget;
 import 'package:flutter/material.dart';
-import 'package:legal_consutancy/screens/signup.dart';
-import 'main_screen.dart';
+import 'package:legal_consutancy/screens/signup_screen.dart';
+import 'dashboard.dart';
 
 class loginScreen extends StatefulWidget {
   @override
@@ -106,7 +106,7 @@ class _loginScreenState extends State<loginScreen> {
 
   void _navigateToNextScreen1(BuildContext context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => MainScreenOfApp()));
+        .push(MaterialPageRoute(builder: (context) => Dashboard()));
   }
 
   void _navigateToNextScreen2(BuildContext context) {
