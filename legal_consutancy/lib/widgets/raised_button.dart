@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget loginScreenButton(String str) {
+Widget customScreenButton(String str) {
     return RaisedButton(
       onPressed: (){},
       textColor: Colors.black,

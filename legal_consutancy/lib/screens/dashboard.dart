@@ -17,16 +17,23 @@ class _DashboardState extends State<Dashboard> {
           elevation: 20,
           child: Column(
             children: [
-              SizedBox(height: 8,),
-              Image.asset(image,
-              width: 100,
-              height: 100,
+              SizedBox(
+                height: 8,
               ),
-              SizedBox(height: 8,),
+              Image.asset(
+                image,
+                width: 100,
+                height: 100,
+              ),
+              SizedBox(
+                height: 8,
+              ),
               Text(
                 menu_item,
-                style: TextStyle(color: Colors.white,
-                fontWeight: FontWeight.bold,),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -34,8 +41,7 @@ class _DashboardState extends State<Dashboard> {
       );
     }
 
-    return Container(
-        child: Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text('Categories'),
         backgroundColor: Color.fromRGBO(00, 69, 69, 1),
@@ -58,10 +64,10 @@ class _DashboardState extends State<Dashboard> {
             dashboardMenu('Finance', 'assets/dashboard/finance.png'),
             dashboardMenu('Tax', 'assets/dashboard/tax.png'),
             dashboardMenu('Harrasement', 'assets/dashboard/harrasement.png'),
-            dashboardMenu('Other', ''),
+            dashboardMenu('Other', 'assets/dashboard/manquestioning.png'),
           ],
         ),
       ),
-    ));
+    );
   }
 }

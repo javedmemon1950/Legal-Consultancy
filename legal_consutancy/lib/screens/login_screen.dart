@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart'
         StatefulWidget,
         Widget;
 import 'package:flutter/material.dart';
+import 'package:legal_consutancy/screens/consultant_list.dart';
 import 'package:legal_consutancy/screens/signup_screen.dart';
 import 'dashboard.dart';
 
@@ -106,7 +107,7 @@ class _loginScreenState extends State<loginScreen> {
 
   void _navigateToNextScreen1(BuildContext context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Dashboard()));
+        .push(MaterialPageRoute(builder: (context) => ConsultantList()));
   }
 
   void _navigateToNextScreen2(BuildContext context) {
