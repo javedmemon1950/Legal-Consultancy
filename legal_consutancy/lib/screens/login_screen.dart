@@ -107,7 +107,7 @@ class _loginScreenState extends State<loginScreen> {
 
   void _navigateToNextScreen1(BuildContext context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => ConsultantList()));
+        .push(MaterialPageRoute(builder: (context) => Dashboard()));
   }
 
   void _navigateToNextScreen2(BuildContext context) {

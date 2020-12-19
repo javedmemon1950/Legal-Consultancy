@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:legal_consutancy/screens/consultant_list.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -12,30 +13,31 @@ class _DashboardState extends State<Dashboard> {
     Widget dashboardMenu(String menu_item, String image) {
       return Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Card(
-          color: Color.fromRGBO(0, 105, 105, 1),
-          elevation: 20,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 8,
-              ),
-              Image.asset(
-                image,
-                width: 100,
-                height: 100,
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Text(
-                menu_item,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+        child: RaisedButton(
+          onPressed: () => {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ConsultantList()))
+          },
+          child: Card(
+            color: Color.fromRGBO(0, 105, 105, 1),
+            elevation: 20,
+            child: Column(
+              children: [
+                SizedBox(height: 8),
+                Image.asset(
+                  image,
+                  width: 100,
+                  height: 100,
                 ),
-              ),
-            ],
+                SizedBox(height: 8),
+                Text(
+                  menu_item,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       );

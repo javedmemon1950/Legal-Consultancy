@@ -7,19 +7,32 @@ class ConsultantList extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
-        color: Color.fromRGBO(0, 105, 105, 1),
+        color: Colors.grey[200],
         elevation: 20,
         child: Row(
           children: [
-            Image.asset(image,
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+              child: Image.asset(
+                image,
                 width: 100,
-                height: 100,),
+                height: 120,
+              ),
+            ),
             Column(
               children: [
-                Text("Name"),
-                Text("Qualifition"),
-                Text("data"),
-                customScreenButton(""),
+                Text("Name: Muhammad Ali", style: TextStyle(fontSize: 20.0)),
+                Text("Qualifition: LLB", style: TextStyle(fontSize: 20.0)),
+                Text("Experience 8 years", style: TextStyle(fontSize: 20.0)),
+                Text("Name: Muhammad Ali", style: TextStyle(fontSize: 20.0)),
+                Text("Qualifition: LLB", style: TextStyle(fontSize: 20.0)),
+                Text("Experience 8 years", style: TextStyle(fontSize: 20.0)),
+                Text("Experience 8 years", style: TextStyle(fontSize: 20.0)),
+                RaisedButton(onPressed: () => {
+                  //Navigator.of(context).push(MaterialPageRoute(builder: (context) => ConsultantList()))
+                },
+                child:Text("Visit Profile")
+                ),
               ],
             ),
           ],
@@ -43,16 +56,12 @@ class ConsultantList extends StatelessWidget {
               crossAxisSpacing: 0.0,
               childAspectRatio: 1.5),
           children: [
-            dashboardMenu('Banking', 'assets/dashboard/banking.png'),
-            dashboardMenu('Business', 'assets/dashboard/business.png'),
-            dashboardMenu('Civil', 'assets/dashboard/civil.png'),
-            // dashboardMenu('Criminal', 'assets/dashboard/criminal.png'),
-            // dashboardMenu('Cyber Crime', 'assets/dashboard/cyber.png'),
-            // dashboardMenu('Divorse', 'assets/dashboard/divorse.png'),
-            // dashboardMenu('Finance', 'assets/dashboard/finance.png'),
-            // dashboardMenu('Tax', 'assets/dashboard/tax.png'),
-            // dashboardMenu('Harrasement', 'assets/dashboard/harrasement.png'),
-            // dashboardMenu('Other', ''),
+            dashboardMenu('Banking', 'assets/avatar_icon.png'),
+            dashboardMenu('Business', 'assets/avatar_icon.png'),
+            dashboardMenu('Civil', 'assets/avatar_icon.png'),
+            dashboardMenu('Civil', 'assets/avatar_icon.png'),
+            dashboardMenu('Civil', 'assets/avatar_icon.png'),
+            dashboardMenu('Civil', 'assets/avatar_icon.png'),
           ],
         ),
       ),
