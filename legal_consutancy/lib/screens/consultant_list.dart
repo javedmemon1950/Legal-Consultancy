@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/raised_button.dart';
 
 class ConsultantList extends StatelessWidget {
   @override
@@ -29,7 +28,7 @@ class ConsultantList extends StatelessWidget {
                 Text("Experience 8 years", style: TextStyle(fontSize: 20.0)),
                 Text("Experience 8 years", style: TextStyle(fontSize: 20.0)),
                 RaisedButton(onPressed: () => {
-                  //Navigator.of(context).push(MaterialPageRoute(builder: (context) => ConsultantList()))
+                  //Navigator.of(BuildContext context).push(MaterialPageRoute(builder: (context) => ConsultantProfile()))
                 },
                 child:Text("Visit Profile")
                 ),

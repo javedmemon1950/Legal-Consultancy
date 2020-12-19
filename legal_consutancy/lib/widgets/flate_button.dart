@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-Widget flateButton(String str) {
+Widget customFlateButton({String data, Function function}) {
   return FlatButton(
-    onPressed: () {  },
+    onPressed: function,
     child: Text(
-      str,
+      data,
       textAlign: TextAlign.left,
       style: TextStyle(
         color: Colors.white,

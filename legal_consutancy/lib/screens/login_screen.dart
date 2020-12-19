@@ -1,19 +1,10 @@
-import 'package:flutter/cupertino.dart'
-    show
-        AssetImage,
-        BuildContext,
-        Column,
-        Container,
-        EdgeInsets,
-        Image,
-        Padding,
-        State,
-        StatefulWidget,
-        Widget;
 import 'package:flutter/material.dart';
 import 'package:legal_consutancy/screens/consultant_list.dart';
+import 'package:legal_consutancy/screens/consultant_profile.dart';
 import 'package:legal_consutancy/screens/signup_screen.dart';
 import 'dashboard.dart';
+import '../widgets/main_icon.dart';
+import '../widgets/input_text_field.dart';
 
 class loginScreen extends StatefulWidget {
   @override
@@ -21,27 +12,50 @@ class loginScreen extends StatefulWidget {
 }
 
 class _loginScreenState extends State<loginScreen> {
-  final Icon = Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Image(
-        image: AssetImage('assets/logo.png'),
-        width: 300,
-      ));
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color.fromRGBO(00, 69, 69, 1),
+      resizeToAvoidBottomPadding: false,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              mainIcon(),
 
-  Widget loginScreenTextField(String str, bool visible) {
-    return Container(
-      width: 300.0,
-      child: TextField(
-        obscureText: visible,
-        decoration: InputDecoration(
-          labelText: 'Email',
-          filled: true,
-          fillColor: Color.fromRGBO(255, 255, 255, 1),
-          hoverColor: Color.fromRGBO(255, 255, 255, 1),
+              SizedBox(height: 70.0,),
+              
+              customInputField(data: 'Login', visible: true,),
+              
+              SizedBox(height: 8.0,),
+
+              customInputField(data: 'Password',visible: true,),
+              
+              Container(
+                width: 300.0,
+                child: Text(
+                  'Forgot Password?',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 24.0,),
+
+              loginScreenButton('Email'),
+              
+              SizedBox(height: 8.0,),
+
+              loginScreenButton('Register'),
+            ],
+          ),
         ),
       ),
     );
   }
+
 
   Widget loginScreenButton(String str) {
     return RaisedButton(
@@ -58,49 +72,6 @@ class _loginScreenState extends State<loginScreen> {
         child: Text(str),
         width: 200.0,
         height: 50.0,
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromRGBO(00, 69, 69, 1),
-      resizeToAvoidBottomPadding: false,
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Icon,
-              SizedBox(
-                height: 70.0,
-              ),
-              loginScreenTextField('Email', false),
-              SizedBox(
-                height: 8.0,
-              ),
-              loginScreenTextField('Password', true),
-              Container(
-                width: 300.0,
-                child: Text(
-                  'Forgot Password?',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 24.0,
-              ),
-              loginScreenButton('Sign In'),
-              SizedBox(
-                height: 8.0,
-              ),
-              loginScreenButton('Register'),
-            ],
-          ),
-        ),
       ),
     );
   }
