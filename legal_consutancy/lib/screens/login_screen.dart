@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:legal_consutancy/screens/consultant_list.dart';
-import 'package:legal_consutancy/screens/consultant_profile.dart';
 import 'package:legal_consutancy/screens/signup_screen.dart';
+import 'package:legal_consutancy/widgets/button.dart';
+import 'package:legal_consutancy/widgets/navigator.dart';
 import 'dashboard.dart';
 import '../widgets/main_icon.dart';
 import '../widgets/input_text_field.dart';
@@ -14,10 +14,11 @@ class loginScreen extends StatefulWidget {
 class _loginScreenState extends State<loginScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromRGBO(00, 69, 69, 1),
-      resizeToAvoidBottomPadding: false,
-      body: SafeArea(
+    return Material(
+      child: Container(
+      color: Color.fromRGBO(00, 69, 69, 1),
+      //resizeToAvoidBottomPadding: false,
+      child: SafeArea(
         child: Center(
           child: Column(
             children: <Widget>[
@@ -25,14 +26,15 @@ class _loginScreenState extends State<loginScreen> {
 
               SizedBox(height: 70.0,),
               
-              customInputField(data: 'Login', visible: true,),
+              customInputField(data: 'Email', visible: true,),
               
               SizedBox(height: 8.0,),
 
-              customInputField(data: 'Password',visible: true,),
+              customInputField(data: 'Password',visible: false,),
               
-              Container(
-                width: 300.0,
+              FlatButton(
+                onPressed: ()=>{},
+                //width: 300.0,
                 child: Text(
                   'Forgot Password?',
                   textAlign: TextAlign.left,
@@ -44,45 +46,16 @@ class _loginScreenState extends State<loginScreen> {
 
               SizedBox(height: 24.0,),
 
-              loginScreenButton('Email'),
+              loginScreenButton('Login',context),
               
               SizedBox(height: 8.0,),
 
-              loginScreenButton('Register'),
+              loginScreenButton('Register',context),
             ],
           ),
         ),
-      ),
+      )
+    ),
     );
-  }
-
-
-  Widget loginScreenButton(String str) {
-    return RaisedButton(
-      onPressed: () {
-        if (str == 'Sign In')
-          _navigateToNextScreen1(context);
-        else if (str == 'Register') _navigateToNextScreen2(context);
-      },
-      textColor: Colors.black,
-      color: Colors.white,
-      padding: const EdgeInsets.all(0.0),
-      child: Container(
-        alignment: Alignment.center,
-        child: Text(str),
-        width: 200.0,
-        height: 50.0,
-      ),
-    );
-  }
-
-  void _navigateToNextScreen1(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Dashboard()));
-  }
-
-  void _navigateToNextScreen2(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => signupScreen()));
   }
 }

@@ -17,27 +17,24 @@ class _DashboardState extends State<Dashboard> {
           onPressed: () => {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => ConsultantList()))
           },
-          child: Card(
-            color: Color.fromRGBO(0, 105, 105, 1),
-            elevation: 20,
-            child: Column(
-              children: [
-                SizedBox(height: 8),
-                Image.asset(
-                  image,
-                  width: 100,
-                  height: 100,
+          color: Color.fromRGBO(00, 69, 69, .8),
+          child: Column(
+            children: [
+              SizedBox(height: 8),
+              Image.asset(
+                image,
+                width: 100,
+                height: 100,
+              ),
+              SizedBox(height: 8),
+              Text(
+                menu_item,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
-                SizedBox(height: 8),
-                Text(
-                  menu_item,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       );

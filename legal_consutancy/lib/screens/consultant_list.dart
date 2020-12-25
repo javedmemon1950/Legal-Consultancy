@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:legal_consutancy/widgets/navigator.dart';
 
 class ConsultantList extends StatelessWidget {
   @override
-  Widget dashboardMenu(String menu_item, String image) {
+  Widget dashboardMenu(String menu_item, String image,BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
@@ -28,7 +29,7 @@ class ConsultantList extends StatelessWidget {
                 Text("Experience 8 years", style: TextStyle(fontSize: 20.0)),
                 Text("Experience 8 years", style: TextStyle(fontSize: 20.0)),
                 RaisedButton(onPressed: () => {
-                  //Navigator.of(BuildContext context).push(MaterialPageRoute(builder: (context) => ConsultantProfile()))
+                  navigateToConsultantProfile(context)
                 },
                 child:Text("Visit Profile")
                 ),
@@ -55,12 +56,12 @@ class ConsultantList extends StatelessWidget {
               crossAxisSpacing: 0.0,
               childAspectRatio: 1.5),
           children: [
-            dashboardMenu('Banking', 'assets/avatar_icon.png'),
-            dashboardMenu('Business', 'assets/avatar_icon.png'),
-            dashboardMenu('Civil', 'assets/avatar_icon.png'),
-            dashboardMenu('Civil', 'assets/avatar_icon.png'),
-            dashboardMenu('Civil', 'assets/avatar_icon.png'),
-            dashboardMenu('Civil', 'assets/avatar_icon.png'),
+            dashboardMenu('Banking', 'assets/avatar_icon.png',context),
+            dashboardMenu('Business', 'assets/avatar_icon.png',context),
+            dashboardMenu('Civil', 'assets/avatar_icon.png',context),
+            dashboardMenu('Civil', 'assets/avatar_icon.png',context),
+            dashboardMenu('Civil', 'assets/avatar_icon.png',context),
+            dashboardMenu('Civil', 'assets/avatar_icon.png',context),
           ],
         ),
       ),

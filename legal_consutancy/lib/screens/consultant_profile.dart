@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:legal_consutancy/screens/message.dart';
+import 'package:legal_consutancy/widgets/navigator.dart';
 
 class ConsultantProfile extends StatelessWidget {
   @override
@@ -25,7 +27,9 @@ class ConsultantProfile extends StatelessWidget {
               Text("data: data"),
               Text("data: data"),
               RaisedButton(
-                onPressed: null,
+                onPressed: ()=>{
+                  navigateToMessageScreen(context)
+                },
                 child: Text("data"),
               )
             ],
