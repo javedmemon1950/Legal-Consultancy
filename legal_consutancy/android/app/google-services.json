@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1013216928088",
+    "project_id": "legal-consultancy-app",
+    "storage_bucket": "legal-consultancy-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013216928088:android:e5bcc2dd389d0a0583052d",
+        "android_client_info": {
+          "package_name": "com.example.legal_consutancy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013216928088-jhjaps38jjfebaik4r49vthka1o23vol.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJegwgKjfsIZQ9NC95Fe0YUWm1-Ihree8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013216928088-jhjaps38jjfebaik4r49vthka1o23vol.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

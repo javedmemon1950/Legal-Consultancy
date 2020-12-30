@@ -1,24 +1,13 @@
-import 'package:flutter/cupertino.dart'
-    show
-        AssetImage,
-        BuildContext,
-        Column,
-        Container,
-        EdgeInsets,
-        Image,
-        Padding,
-        State,
-        StatefulWidget,
-        Widget;
 import 'package:flutter/material.dart';
+import 'package:legal_consutancy/widgets/main_icon.dart';
 
-class signupScreen extends StatefulWidget {
+class SignupScreen extends StatefulWidget {
   @override
-  _signupScreenState createState() => _signupScreenState();
+  _SignupScreenState createState() => _SignupScreenState();
 }
 
-Widget inputText(String str){
-    return Container(
+Widget inputText(String str) {
+  return Container(
     width: 300.0,
     child: TextField(
       decoration: InputDecoration(
@@ -29,10 +18,9 @@ Widget inputText(String str){
       ),
     ),
   );
-  }
+}
 
-class _signupScreenState extends State<signupScreen> {
-
+class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,10 +30,11 @@ class _signupScreenState extends State<signupScreen> {
         child: Center(
           child: Column(
             children: <Widget>[
-              Text('Sign Up',
-              style: TextStyle(
-                fontSize: 36.0
-              ),
+              mainIcon(),
+              Text(
+                'Sign Up',
+                style: TextStyle(fontSize: 36.0,
+                color: Colors.white),
               ),
               SizedBox(
                 height: 8.0,
@@ -66,7 +55,7 @@ class _signupScreenState extends State<signupScreen> {
               SizedBox(
                 height: 8.0,
               ),
-              inputText('CNIC'),              
+              inputText('CNIC'),
             ],
           ),
         ),

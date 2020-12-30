@@ -13,7 +13,7 @@ void navigateToDashboard(BuildContext context) {
 
 void navigateToSignUpScreen(BuildContext context) {
   Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => signupScreen()));
+      .push(MaterialPageRoute(builder: (context) => SignupScreen()));
 }
 
 void navigateToConsultantList(BuildContext context) {
@@ -28,7 +28,7 @@ void navigateToConsultantProfile(BuildContext context) {
 
 void navigateToLoginScreen(BuildContext context) {
   Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => loginScreen()));
+      .push(MaterialPageRoute(builder: (context) => LoginScreen()));
 }
 
 void navigateToMessageScreen(BuildContext context) {

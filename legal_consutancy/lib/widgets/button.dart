@@ -16,11 +16,12 @@ Widget customButton({Widget data, Function function}) {
   );
 }
 
-Widget loginScreenButton(String buttonName, BuildContext context) {
+Widget loginScreenButton(String buttonName, BuildContext context,bool boolean) {
     return RaisedButton(
       onPressed: () {
         if (buttonName == 'Login')
         {
+          if(boolean)
           navigateToDashboard(context);
         }
         else if (buttonName == 'Register') 

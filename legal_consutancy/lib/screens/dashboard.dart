@@ -10,7 +10,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
-    Widget dashboardMenu(String menu_item, String image) {
+    Widget dashboardMenu(String menuItem, String image) {
       return Padding(
         padding: const EdgeInsets.all(16.0),
         child: RaisedButton(
@@ -28,7 +28,7 @@ class _DashboardState extends State<Dashboard> {
               ),
               SizedBox(height: 8),
               Text(
-                menu_item,
+                menuItem,
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,

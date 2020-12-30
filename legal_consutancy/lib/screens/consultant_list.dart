@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:legal_consutancy/widgets/navigator.dart';
 
 class ConsultantList extends StatelessWidget {
-  @override
-  Widget dashboardMenu(String menu_item, String image,BuildContext context) {
+  
+  Widget dashboardMenu(String menuItem, String image,BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
@@ -41,6 +41,8 @@ class ConsultantList extends StatelessWidget {
     );
   }
 
+  
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

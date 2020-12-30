@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class signupScreen extends StatefulWidget {
+class SignupScreen extends StatefulWidget {
   @override
-  _signupScreenState createState() => _signupScreenState();
+  _SignupScreenState createState() => _SignupScreenState();
 }
 
 Widget inputText(String str){
@@ -19,7 +19,7 @@ Widget inputText(String str){
   );
   }
 
-class _signupScreenState extends State<signupScreen> {
+class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {

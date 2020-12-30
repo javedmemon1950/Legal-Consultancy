@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:legal_consutancy/screens/login_screen.dart';
-import 'screens/dashboard.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Legal Consultancy',
-      home: loginScreen(),
+      home: LoginScreen(),
       //home: consultantProfile(),
     );
   }
