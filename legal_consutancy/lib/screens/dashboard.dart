@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:legal_consutancy/screens/consultant_list.dart';
+import 'package:legal_consutancy/widgets/appbar.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -41,10 +42,7 @@ class _DashboardState extends State<Dashboard> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Categories'),
-        backgroundColor: Color.fromRGBO(00, 69, 69, 1),
-      ),
+      appBar: myAppBar("Categories",context),
       body: Container(
         //height: 100,
         child: GridView(

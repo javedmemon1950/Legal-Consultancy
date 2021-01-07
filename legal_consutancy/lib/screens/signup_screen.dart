@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:legal_consutancy/widgets/button.dart';
 import 'package:legal_consutancy/widgets/main_icon.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -56,6 +57,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 height: 8.0,
               ),
               inputText('CNIC'),
+              SizedBox(
+                height: 8.0,
+              ),
+              loginScreenButton('Register', context, true),
             ],
           ),
         ),

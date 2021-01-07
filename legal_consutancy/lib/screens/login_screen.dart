@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 24.0,
                   ),
-                  loginScreenButton('Login', context, false),
+                  loginScreenButton('Login', context, true),
                   SizedBox(
                     height: 8.0,
                   ),

@@ -46,8 +46,9 @@ class ConsultantList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Categories'),
+        title: Text('Consultants'),
         backgroundColor: Color.fromRGBO(00, 69, 69, 1),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         //height: 100,

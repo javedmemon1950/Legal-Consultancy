@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:legal_consutancy/screens/chats.dart';
 import 'package:legal_consutancy/screens/login_screen.dart';
 
 
@@ -14,9 +15,10 @@ class MyApp extends StatelessWidget {
     ]);
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Legal Consultancy',
       home: LoginScreen(),
-      //home: consultantProfile(),
+      //home: Chats(),
     );
   }
 }

@@ -21,12 +21,17 @@ Widget loginScreenButton(String buttonName, BuildContext context,bool boolean) {
       onPressed: () {
         if (buttonName == 'Login')
         {
-          if(boolean)
-          navigateToDashboard(context);
+          if(boolean){
+            navigateToDashboard(context);
+          }
         }
         else if (buttonName == 'Register') 
         {
-          navigateToSignUpScreen(context);
+          if(boolean){
+            navigateToDashboard(context);
+          }
+          else
+            navigateToSignUpScreen(context);
         }
       },
       textColor: Colors.black,

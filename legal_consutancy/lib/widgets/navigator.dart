@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:legal_consutancy/screens/chats.dart';
 import 'package:legal_consutancy/screens/message.dart';
+import 'package:legal_consutancy/screens/update_user_profile.dart';
 import '../screens/dashboard.dart';
 import '../screens/consultant_list.dart';
 import '../screens/consultant_profile.dart';
@@ -34,4 +36,14 @@ void navigateToLoginScreen(BuildContext context) {
 void navigateToMessageScreen(BuildContext context) {
   Navigator.of(context)
       .push(MaterialPageRoute(builder: (context) => MessageScreen()));
+}
+
+void navigateToUpdateProfile(BuildContext context) {
+  Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => UpdateProfileScreen()));
+}
+
+void navigateToInbox(BuildContext context) {
+  Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => Chats()));
 }

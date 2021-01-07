@@ -13,20 +13,34 @@ class _MessageScreenState extends State<MessageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Message'),
+        title: Text('Messages'),
         backgroundColor: Color.fromRGBO(00, 69, 69, 1),
+        automaticallyImplyLeading: false,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          senderMessage('Hello sir'),
-          reciverMessage('Hello'),
-          senderMessage('I am business man, I need ur help'),
-          reciverMessage('What is the issue'),
-          senderMessage('Hello sir, ashdkjas ajshdkja kasjhka'),
+          Column(
+            children: [
+              senderMessage('Hello sir'),
+              reciverMessage('Hello'),
+              senderMessage('I am business man, I need ur help'),
+              reciverMessage('What is the issue'),
+              senderMessage('Hello sir, ashdkjas ajshdkja kasjhka'),
+            ],
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width*0.90,
+            child: TextFormField(
+              
+            ),
+          )
         ],
       ),
     );
   }
+
+  
 
   Widget reciverMessage(String message) {
     return ChatBubble(
@@ -38,7 +52,8 @@ class _MessageScreenState extends State<MessageScreen> {
           maxWidth: MediaQuery.of(context).size.width * 0.7,
         ),
         child: Text(
-          "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+          //"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+          message,
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -50,13 +65,14 @@ class _MessageScreenState extends State<MessageScreen> {
       clipper: ChatBubbleClipper1(type: BubbleType.sendBubble),
       alignment: Alignment.topRight,
       margin: EdgeInsets.only(top: 20),
-      backGroundColor: Colors.blue,
+      backGroundColor: Color.fromRGBO(00, 69, 69, 0.8),
       child: Container(
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width * 0.7,
         ),
         child: Text(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          //"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          message,
           style: TextStyle(color: Colors.white),
         ),
       ),
