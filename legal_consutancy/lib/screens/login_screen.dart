@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:legal_consutancy/widgets/button.dart';
+import 'package:legal_consutancy/widgets/navigator.dart';
 import '../widgets/main_icon.dart';
-import '../widgets/input_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -9,8 +11,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController etEmail = TextEditingController();
-  TextEditingController etPassword = TextEditingController();
+  FirebaseAuth auth = FirebaseAuth.instance;
+  String email;
+  String password;
 
   @override
   Widget build(BuildContext context) {
@@ -26,31 +29,76 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 70.0,
                   ),
-                  customInputField(data: 'Email', visible: false, et: etEmail),
+                  Container(
+                    width: 300.0,
+                    child: TextField(
+                      onChanged: (value) {
+                        email = value;
+                      },
+                      decoration: InputDecoration(
+                        labelText: "Email",
+                        filled: true,
+                        fillColor: Color.fromRGBO(255, 255, 255, 1),
+                        hoverColor: Color.fromRGBO(255, 255, 255, 1),
+                      ),
+                    ),
+                  ),
                   SizedBox(
                     height: 8.0,
                   ),
-                  customInputField(
-                      data: 'Password', visible: true, et: etPassword),
-                  FlatButton(
-                    onPressed: () => {},
-                    //width: 300.0,
-                    child: Text(
-                      'Forgot Password?',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: Colors.white,
+                  Container(
+                    width: 300.0,
+                    child: TextField(
+                      onChanged: (value) {
+                        password = value;
+                      },
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        labelText: "Password",
+                        filled: true,
+                        fillColor: Color.fromRGBO(255, 255, 255, 1),
+                        hoverColor: Color.fromRGBO(255, 255, 255, 1),
                       ),
                     ),
                   ),
                   SizedBox(
                     height: 24.0,
                   ),
-                  loginScreenButton('Login', context, true),
+                  loginScreenButton(
+                      context: context,
+                      title: 'Login',
+                      onPressed: () async {
+                        try {
+                          final user = await auth
+                              .signInWithEmailAndPassword(
+                                  email: email, password: password);
+                          if (user != null) {
+                            navigateToDashboard(
+                              context,
+                            );
+                          }
+                        } catch (e) {
+                          print(e);
+                        }
+                      }),
                   SizedBox(
                     height: 8.0,
                   ),
-                  loginScreenButton('Register', context, false),
+                  loginScreenButton(
+                      context: context,
+                      title: 'Register',
+                      onPressed: () async {
+                        try {
+                          final user = await auth
+                              .createUserWithEmailAndPassword(
+                                  email: email, password: password);
+                          if (user != null) {
+                            navigateToDashboard(context);
+                          }
+                        } catch (e) {
+                          print(e);
+                        }
+                      }),
                 ],
               ),
             ),

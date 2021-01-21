@@ -16,32 +16,18 @@ Widget customButton({Widget data, Function function}) {
   );
 }
 
-Widget loginScreenButton(String buttonName, BuildContext context,bool boolean) {
-    return RaisedButton(
-      onPressed: () {
-        if (buttonName == 'Login')
-        {
-          if(boolean){
-            navigateToDashboard(context);
-          }
-        }
-        else if (buttonName == 'Register') 
-        {
-          if(boolean){
-            navigateToDashboard(context);
-          }
-          else
-            navigateToSignUpScreen(context);
-        }
-      },
-      textColor: Colors.black,
-      color: Colors.white,
-      padding: const EdgeInsets.all(0.0),
-      child: Container(
-        alignment: Alignment.center,
-        child: Text(buttonName),
-        width: 200.0,
-        height: 50.0,
-      ),
-    );
-  }
+Widget loginScreenButton(
+    {String title, BuildContext context, Function onPressed}) {
+  return RaisedButton(
+    onPressed: onPressed,
+    textColor: Colors.black,
+    color: Colors.white,
+    padding: const EdgeInsets.all(0.0),
+    child: Container(
+      alignment: Alignment.center,
+      child: Text(title),
+      width: 200.0,
+      height: 50.0,
+    ),
+  );
+}
