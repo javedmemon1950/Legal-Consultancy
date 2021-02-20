@@ -1,35 +1,29 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:legal_consutancy/widgets/button.dart';
 import 'package:legal_consutancy/widgets/main_icon.dart';
-
-import '../firbase_authentication.dart';
+import 'package:legal_consutancy/widgets/navigator.dart';
 
 class SignupScreen extends StatefulWidget {
   @override
   _SignupScreenState createState() => _SignupScreenState();
 }
 
-Widget inputText(String str, TextEditingController et) {
-  return Container(
-    width: 300.0,
-    child: TextField(
-      controller: et,
-      decoration: InputDecoration(
-        labelText: str,
-        filled: true,
-        fillColor: Color.fromRGBO(255, 255, 255, 1),
-        hoverColor: Color.fromRGBO(255, 255, 255, 1),
-      ),
-    ),
-  );
-}
-
 class _SignupScreenState extends State<SignupScreen> {
-  TextEditingController et_name = TextEditingController();
-  TextEditingController et_password = TextEditingController();
-  TextEditingController et_repeatpassword = TextEditingController();
-  TextEditingController et_cnic = TextEditingController();
-  TextEditingController et_email = TextEditingController();
+
+  //FireBase
+  FirebaseAuth auth = FirebaseAuth.instance;
+  User currentUser = FirebaseAuth.instance.currentUser;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  
+  //Input Fields Data
+  String name;
+  String password;
+  String repeatPassword;
+  String cnic;
+  String email;
+  String contact;
 
   @override
   Widget build(BuildContext context) {
@@ -45,34 +39,78 @@ class _SignupScreenState extends State<SignupScreen> {
                 'Sign Up',
                 style: TextStyle(fontSize: 36.0, color: Colors.white),
               ),
-              SizedBox(
-                height: 8.0,
-              ),
-              inputText('Name', et_name),
-              SizedBox(
-                height: 8.0,
-              ),
-              inputText('Email', et_email),
-              SizedBox(
-                height: 8.0,
-              ),
-              inputText('Password', et_password),
-              SizedBox(
-                height: 8.0,
-              ),
-              inputText('Re-Enter Password', et_repeatpassword),
-              SizedBox(
-                height: 8.0,
-              ),
-              inputText('CNIC', et_cnic),
-              SizedBox(
-                height: 8.0,
-              ),
-              //loginScreenButton('Register', context, true),
+              inputText('Name'),
+              inputText('Email'),
+              inputText('Password'),
+              inputText('Re-Enter Password'),
+              inputText('CNIC'),
+              inputText('Contact'),
+              loginScreenButton(
+                  context: context,
+                  title: 'Register',
+                  onPressed: () async {
+                    addUser();
+                    if (password == repeatPassword)
+                      try {
+                        final user = await auth.createUserWithEmailAndPassword(
+                            email: email, password: password);
+                        if (user != null) {
+                          navigateToDashboard(context);
+                        }
+                      } catch (e) {
+                        print(e);
+                      }
+                  }),
             ],
           ),
         ),
       ),
     );
+  }
+
+  //Custom Input TextBox
+  Widget inputText(String labelText) {
+    return Container(
+      padding: EdgeInsets.only(bottom: 8.0),
+      width: 300.0,
+      child: TextField(
+        onChanged: (value) {
+          if (labelText == 'Name') {
+            name = value;
+          } else if (labelText == 'Email') {
+            email = value;
+          } else if (labelText == 'Password') {
+            password = value;
+          } else if (labelText == 'Re-Enter Password') {
+            repeatPassword = value;
+          } else if (labelText == 'CNIC') {
+            cnic = value;
+          } else if (labelText == 'Contact') {
+            contact = value;
+          }
+        },
+        decoration: InputDecoration(
+          labelText: labelText,
+          filled: true,
+          fillColor: Color.fromRGBO(255, 255, 255, 1),
+          hoverColor: Color.fromRGBO(255, 255, 255, 1),
+        ),
+      ),
+    );
+  }
+
+  //Adding user data on FireStore
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+  Future<void> addUser() {
+    return users
+        .doc(email)
+        .set({
+          'name': name,
+          'email': email,
+          'cnic': cnic,
+          'contact': contact,
+        })
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
   }
 }

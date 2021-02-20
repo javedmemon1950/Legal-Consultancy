@@ -29,38 +29,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 70.0,
                   ),
-                  Container(
-                    width: 300.0,
-                    child: TextField(
-                      onChanged: (value) {
-                        email = value;
-                      },
-                      decoration: InputDecoration(
-                        labelText: "Email",
-                        filled: true,
-                        fillColor: Color.fromRGBO(255, 255, 255, 1),
-                        hoverColor: Color.fromRGBO(255, 255, 255, 1),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 8.0,
-                  ),
-                  Container(
-                    width: 300.0,
-                    child: TextField(
-                      onChanged: (value) {
-                        password = value;
-                      },
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelText: "Password",
-                        filled: true,
-                        fillColor: Color.fromRGBO(255, 255, 255, 1),
-                        hoverColor: Color.fromRGBO(255, 255, 255, 1),
-                      ),
-                    ),
-                  ),
+                  inputText('Email'),
+                  inputText('Password'),
                   SizedBox(
                     height: 24.0,
                   ),
@@ -69,9 +39,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       title: 'Login',
                       onPressed: () async {
                         try {
-                          final user = await auth
-                              .signInWithEmailAndPassword(
-                                  email: email, password: password);
+                          final user = await auth.signInWithEmailAndPassword(
+                              email: email, password: password);
                           if (user != null) {
                             navigateToDashboard(
                               context,
@@ -87,22 +56,35 @@ class _LoginScreenState extends State<LoginScreen> {
                   loginScreenButton(
                       context: context,
                       title: 'Register',
-                      onPressed: () async {
-                        try {
-                          final user = await auth
-                              .createUserWithEmailAndPassword(
-                                  email: email, password: password);
-                          if (user != null) {
-                            navigateToDashboard(context);
-                          }
-                        } catch (e) {
-                          print(e);
-                        }
+                      onPressed: () {
+                        navigateToSignUpScreen(context);
                       }),
                 ],
               ),
             ),
           )),
+    );
+  }
+
+  Widget inputText(String labelText) {
+    return Container(
+      padding: EdgeInsets.only(bottom: 8.0),
+      width: 300.0,
+      child: TextField(
+        onChanged: (value) {
+          if (labelText == 'Email') {
+            email = value;
+          } else if (labelText == 'Password') {
+            password = value;
+          }
+        },
+        decoration: InputDecoration(
+          labelText: labelText,
+          filled: true,
+          fillColor: Color.fromRGBO(255, 255, 255, 1),
+          hoverColor: Color.fromRGBO(255, 255, 255, 1),
+        ),
+      ),
     );
   }
 }
