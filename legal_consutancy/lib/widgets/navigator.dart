@@ -23,9 +23,9 @@ void navigateToConsultantList(BuildContext context) {
       .push(MaterialPageRoute(builder: (context) => ConsultantList()));
 }
 
-void navigateToConsultantProfile(BuildContext context) {
+void navigateToConsultantProfile(BuildContext context, String consultantReference) {
   Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => ConsultantProfile()));
+      .push(MaterialPageRoute(builder: (context) => ConsultantProfile(email: consultantReference,)));
 }
 
 void navigateToLoginScreen(BuildContext context) {

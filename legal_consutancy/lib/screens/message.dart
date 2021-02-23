@@ -29,11 +29,19 @@ class _MessageScreenState extends State<MessageScreen> {
               senderMessage('Hello sir, ashdkjas ajshdkja kasjhka'),
             ],
           ),
-          Container(
-            width: MediaQuery.of(context).size.width*0.90,
-            child: TextFormField(
-              
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                color: Color.fromRGBO(00, 69, 69, .1),
+                width: MediaQuery.of(context).size.width*0.85,
+                child: TextFormField(
+                  maxLines: 3,
+                  minLines: 1,
+                ),
+              ),
+              IconButton(icon: Icon(Icons.send), onPressed: null, )
+            ],
           )
         ],
       ),
