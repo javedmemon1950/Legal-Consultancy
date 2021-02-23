@@ -141,8 +141,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   //Adding user data on FireStore
   CollectionReference users = FirebaseFirestore.instance.collection('users');
-  CollectionReference consultants =
-      FirebaseFirestore.instance.collection('consultants');
+  CollectionReference consultants = FirebaseFirestore.instance.collection('consultants');
   Future<void> addUser() {
     return users
         .doc(email)

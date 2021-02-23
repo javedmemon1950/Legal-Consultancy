@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +18,8 @@ class _LoginScreenState extends State<LoginScreen> {
   String email;
   String password;
 
+  bool isConsultantSelected = false;
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -31,6 +36,24 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   inputText('Email'),
                   inputText('Password'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'I am a Consultant',
+                        style: TextStyle(fontSize: 12.0, color: Colors.white),
+                      ),
+                      Checkbox(
+                        //checkColor: Colors.white,
+                        value: isConsultantSelected,
+                        onChanged: (value) {
+                          setState(() {
+                            isConsultantSelected = !isConsultantSelected;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                   SizedBox(
                     height: 24.0,
                   ),
@@ -41,10 +64,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         try {
                           final user = await auth.signInWithEmailAndPassword(
                               email: email, password: password);
-                          if (user != null) {
-                            navigateToDashboard(
-                              context,
-                            );
+                          if (user != null && isConsultantSelected) {
+                            checkConsultantExist(email);
+                            //isConsultantRegistered(email: email);
+                            // if (isConsultantRegistered(email: email) != null) {
+                            //   navigateToInbox(context);
+                            // }
+                          } else if (user != null && !isConsultantSelected) {
+                            checkUserExist(email);
+                            //isUserRegistered(email: email);
+                            // if (isUserRegistered(email: email) != null) {
+                            //   navigateToDashboard(context);
+                            // }
                           }
                         } catch (e) {
                           print(e);
@@ -86,5 +117,35 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  Future<bool> checkUserExist(String docID) async {
+    bool exists = false;
+    try {
+      await FirebaseFirestore.instance.doc("users/$docID").get().then((doc) {
+        if (doc.exists)
+          exists = true;
+        else
+        exists = false;
+      });
+      return exists;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> checkConsultantExist(String docID) async {
+    bool exists = false;
+    try {
+      await FirebaseFirestore.instance.doc("consultants/$docID").get().then((doc) {
+        if (doc.exists)
+          exists = true;
+        else
+          exists = false;
+      });
+      return exists;
+    } catch (e) {
+      return false;
+    }
   }
 }
