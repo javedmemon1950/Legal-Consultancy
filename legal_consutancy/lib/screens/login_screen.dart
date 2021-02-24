@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:legal_consutancy/widgets/button.dart';
 import 'package:legal_consutancy/widgets/navigator.dart';
 import '../widgets/main_icon.dart';
+import 'chats.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -66,16 +67,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               email: email, password: password);
                           if (user != null && isConsultantSelected) {
                             checkConsultantExist(email);
-                            //isConsultantRegistered(email: email);
-                            // if (isConsultantRegistered(email: email) != null) {
-                            //   navigateToInbox(context);
-                            // }
                           } else if (user != null && !isConsultantSelected) {
                             checkUserExist(email);
-                            //isUserRegistered(email: email);
-                            // if (isUserRegistered(email: email) != null) {
-                            //   navigateToDashboard(context);
-                            // }
                           }
                         } catch (e) {
                           print(e);
@@ -123,10 +116,12 @@ class _LoginScreenState extends State<LoginScreen> {
     bool exists = false;
     try {
       await FirebaseFirestore.instance.doc("users/$docID").get().then((doc) {
-        if (doc.exists)
+        if (doc.exists) {
+          navigateToDashboard(context);
           exists = true;
-        else
-        exists = false;
+        } else {
+          exists = false;
+        }
       });
       return exists;
     } catch (e) {
@@ -137,11 +132,17 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<bool> checkConsultantExist(String docID) async {
     bool exists = false;
     try {
-      await FirebaseFirestore.instance.doc("consultants/$docID").get().then((doc) {
-        if (doc.exists)
+      await FirebaseFirestore.instance
+          .doc("consultants/$docID")
+          .get()
+          .then((doc) {
+        if (doc.exists) {
+          Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => Chats(isConsultant: true,)));
           exists = true;
-        else
+        } else {
           exists = false;
+        }
       });
       return exists;
     } catch (e) {

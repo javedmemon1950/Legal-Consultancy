@@ -33,9 +33,9 @@ void navigateToLoginScreen(BuildContext context) {
       .push(MaterialPageRoute(builder: (context) => LoginScreen()));
 }
 
-void navigateToMessageScreen(BuildContext context) {
+void navigateToMessageScreen(BuildContext context,{consultantEmail,userEmail}) {
   Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => MessageScreen()));
+      .push(MaterialPageRoute(builder: (context) => MessageScreen(consultantEmail: consultantEmail,userEmail: userEmail,)));
 }
 
 void navigateToUpdateProfile(BuildContext context) {

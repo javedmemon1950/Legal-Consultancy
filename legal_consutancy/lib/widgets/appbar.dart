@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:legal_consutancy/screens/chats.dart';
 import 'package:legal_consutancy/widgets/navigator.dart';
 
 Widget myAppBar(String title, BuildContext context) {
@@ -31,7 +32,8 @@ Widget myAppBar(String title, BuildContext context) {
           color: Colors.white,
         ),
         onPressed: () {
-          navigateToInbox(context);
+          Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => Chats(isConsultant: false,)));
         },
       ),
       IconButton(

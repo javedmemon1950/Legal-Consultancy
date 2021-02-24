@@ -1,19 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:legal_consutancy/widgets/navigator.dart';
 
 class ConsultantProfile extends StatefulWidget {
   ConsultantProfile({this.email});
   String email;
+
   @override
   _ConsultantProfileState createState() =>
-      _ConsultantProfileState(email: email);
+      _ConsultantProfileState(consultantEmail: email);
 }
 
 class _ConsultantProfileState extends State<ConsultantProfile> {
-  _ConsultantProfileState({this.email});
-  String email;
-  
+  _ConsultantProfileState({this.consultantEmail});
+  User user = FirebaseAuth.instance.currentUser;
+  String consultantEmail;
+
   @override
   void initState() {
     super.initState();
@@ -38,7 +41,7 @@ class _ConsultantProfileState extends State<ConsultantProfile> {
         FirebaseFirestore.instance.collection('consultants');
 
     return FutureBuilder<DocumentSnapshot>(
-      future: users.doc(email).get(),
+      future: users.doc(consultantEmail).get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -81,7 +84,13 @@ class _ConsultantProfileState extends State<ConsultantProfile> {
                     textAlign: TextAlign.justify,
                   ),
                   RaisedButton(
-                    onPressed: () => {navigateToMessageScreen(context)},
+                    onPressed: () => {
+                      print(consultantEmail),
+                      print(user.email),
+                      navigateToMessageScreen(context,
+                          consultantEmail: consultantEmail,
+                          userEmail: user.email),
+                    },
                     child: Text("Chat Now"),
                   )
                 ],
