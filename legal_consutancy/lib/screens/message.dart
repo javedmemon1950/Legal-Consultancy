@@ -34,42 +34,45 @@ class _MessageScreenState extends State<MessageScreen> {
           backgroundColor: Color.fromRGBO(00, 69, 69, 1),
           automaticallyImplyLeading: false,
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: SingleChildScrollView(
+                  child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                getMessageNo(),
+                fetchMessages(),
+                Container(
+                  //margin: EdgeInsets.only(bottom: 8),
+                  child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            fetchMessages(),
             Container(
-              margin: EdgeInsets.only(bottom: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(00, 69, 69, .1),
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    margin: EdgeInsets.only(left: 8, top: 8),
-                    width: MediaQuery.of(context).size.width * 0.83,
-                    child: TextFormField(
-                      controller: et_message,
-                      onChanged: (value) {
-                        messageTyped = value;
-                      },
-                      maxLines: 3,
-                      minLines: 1,
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.send),
-                    onPressed: () {
-                      et_message.clear();
-                      sendMessage(messageTyped);
-                    },
-                  )
-                ],
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(00, 69, 69, .1),
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              margin: EdgeInsets.only(left: 8, top: 8),
+              width: MediaQuery.of(context).size.width * 0.83,
+              child: TextFormField(
+                controller: et_message,
+                onChanged: (value) {
+                  messageTyped = value;
+                },
+                maxLines: 3,
+                minLines: 1,
               ),
             ),
+            IconButton(
+              icon: Icon(Icons.send),
+              onPressed: () {
+                et_message.clear();
+                sendMessage(messageTyped);
+              },
+            )
           ],
+                  ),
+                ),
+              ],
+            ),
         ));
   }
 
@@ -178,13 +181,15 @@ class _MessageScreenState extends State<MessageScreen> {
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
           print(snapshot.error);
-          messageNo = 1;
+          return Text('error');
         }
 
         if (snapshot.connectionState == ConnectionState.done) {
           Map<String, dynamic> data = snapshot.data.data();
-          messageNo = data['messageNo'];
-          print(data['messageNo']);
+          messageNo = data['messageNo']+1;
+          return Text('$messageNo',style: TextStyle(
+            fontSize: 0.1
+          ),);
         }
 
         return Text("loading");
