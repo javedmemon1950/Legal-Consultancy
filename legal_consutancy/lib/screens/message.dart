@@ -18,7 +18,6 @@ class MessageScreen extends StatefulWidget {
 class _MessageScreenState extends State<MessageScreen> {
   _MessageScreenState({this.userEmail, this.consultantEmail});
   User user = FirebaseAuth.instance.currentUser;
-  var messageNo = 1;
   var userEmail;
   var consultantEmail;
   bool isConsultant = false;
@@ -34,15 +33,14 @@ class _MessageScreenState extends State<MessageScreen> {
           backgroundColor: Color.fromRGBO(00, 69, 69, 1),
           automaticallyImplyLeading: false,
         ),
-        body: SingleChildScrollView(
-                  child: Column(
+        body: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                getMessageNo(),
+//                getMessageNo(),
                 fetchMessages(),
                 Container(
-                  //margin: EdgeInsets.only(bottom: 8),
-                  child: Row(
+        //margin: EdgeInsets.only(bottom: 8),
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
@@ -55,7 +53,7 @@ class _MessageScreenState extends State<MessageScreen> {
               child: TextFormField(
                 controller: et_message,
                 onChanged: (value) {
-                  messageTyped = value;
+        messageTyped = value;
                 },
                 maxLines: 3,
                 minLines: 1,
@@ -69,11 +67,10 @@ class _MessageScreenState extends State<MessageScreen> {
               },
             )
           ],
-                  ),
+        ),
                 ),
               ],
-            ),
-        ));
+            ));
   }
 
   Widget reciverMessage(String message) {
@@ -118,7 +115,7 @@ class _MessageScreenState extends State<MessageScreen> {
         .collection('messages');
 
     return StreamBuilder<QuerySnapshot>(
-      stream: conversation.snapshots(),
+      stream: conversation.orderBy('datentime',descending: true).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return Text('Something went wrong');
@@ -128,72 +125,38 @@ class _MessageScreenState extends State<MessageScreen> {
           return Text("Loading");
         }
 
-        return new Column(
-          children: snapshot.data.docs.map((DocumentSnapshot document) {
-            return document.data()['sender'] == user.email
-                ? senderMessage(document.data()['text'])
-                : reciverMessage(document.data()['text']);
-          }).toList(),
-        );
-      },
-    );
-  }
+        return Expanded(
+                  child: ListView(
+                    reverse: true,
+                  children: snapshot.data.docs.map((DocumentSnapshot document) {
+                    return document.data()['sender'] == user.email
+                        ? senderMessage(document.data()['text'])
+                        : reciverMessage(document.data()['text']);
+                  }).toList(),
+                ),
+              );
+            },
+          );
+        }
 
   sendMessage(String message) {
     CollectionReference chats = FirebaseFirestore.instance.collection('chats');
-
-    String newMessageReference;
-    if (messageNo < 10)
-      newMessageReference = '000$messageNo';
-    else if (messageNo > 9 && messageNo < 100)
-      newMessageReference = '00$messageNo';
-    else if (messageNo > 99 && messageNo < 1000)
-      newMessageReference = '0$messageNo';
 
     chats.doc('${userEmail}to$consultantEmail').set({
       'user': userEmail,
       'consultant': consultantEmail,
       'lastMessage': message,
-      'messageNo': messageNo
+      'datentime': Timestamp.now().millisecondsSinceEpoch
     });
 
     chats
         .doc('${userEmail}to$consultantEmail')
         .collection("messages")
-        .doc(newMessageReference)
+        .doc()
         .set({
       'text': message,
       'sender': user.email,
-      'messageNo': newMessageReference
+      'datentime': Timestamp.now().millisecondsSinceEpoch
     });
-    messageNo++;
-  }
-
-  getMessageNo() {
-    String docID = '${userEmail}to$consultantEmail';
-
-    CollectionReference messageRef =
-        FirebaseFirestore.instance.collection('chats');
-
-    return FutureBuilder<DocumentSnapshot>(
-      future: messageRef.doc(docID).get(),
-      builder:
-          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-        if (snapshot.hasError) {
-          print(snapshot.error);
-          return Text('error');
-        }
-
-        if (snapshot.connectionState == ConnectionState.done) {
-          Map<String, dynamic> data = snapshot.data.data();
-          messageNo = data['messageNo']+1;
-          return Text('$messageNo',style: TextStyle(
-            fontSize: 0.1
-          ),);
-        }
-
-        return Text("loading");
-      },
-    );
   }
 }
