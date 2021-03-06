@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:legal_consutancy/widgets/navigator.dart';
 
 class ConsultantList extends StatefulWidget {
+  ConsultantList(this.catergory);
+  var catergory;
   @override
-  _ConsultantListState createState() => _ConsultantListState();
+  _ConsultantListState createState() => _ConsultantListState(catergory);
 }
 
 class _ConsultantListState extends State<ConsultantList> {
-  //Firestore Instance
+  _ConsultantListState(this.catergory);
+  var catergory;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Widget consultantListItem(
@@ -39,13 +42,15 @@ class _ConsultantListState extends State<ConsultantList> {
             Column(
               children: [
                 Text("Name: $name", style: TextStyle(fontSize: 20.0)),
-                Text("Qualifition: $qualification", style: TextStyle(fontSize: 15.0)),
-                Text("Experience: $experience years", style: TextStyle(fontSize: 15.0)),
+                Text("Qualifition: $qualification",
+                    style: TextStyle(fontSize: 15.0)),
+                Text("Experience: $experience years",
+                    style: TextStyle(fontSize: 15.0)),
                 RaisedButton(
                     onPressed: () => {
-                      //print(name),
-                      navigateToConsultantProfile(context,email)
-                    },
+                          //print(name),
+                          navigateToConsultantProfile(context, email)
+                        },
                     child: Text("Visit Profile")),
               ],
             ),
@@ -58,20 +63,22 @@ class _ConsultantListState extends State<ConsultantList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Consultants'),
-        backgroundColor: Color.fromRGBO(00, 69, 69, 1),
-        automaticallyImplyLeading: false,
-      ),
-      body: fetchConsultantList(context)
-    );
+        appBar: AppBar(
+          title: Text('Consultants'),
+          backgroundColor: Color.fromRGBO(00, 69, 69, 1),
+          automaticallyImplyLeading: false,
+        ),
+        body: fetchConsultantList(context)
+        //body: Text(catergory),
+      );
   }
 
   fetchConsultantList(BuildContext context) {
-    CollectionReference consultants = FirebaseFirestore.instance.collection('consultants');
+    CollectionReference consultants =
+        FirebaseFirestore.instance.collection('consultants');
 
     return StreamBuilder<QuerySnapshot>(
-      stream: consultants.snapshots(),
+      stream: consultants.where('category',isEqualTo: catergory).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return Text('Something went wrong');
@@ -82,14 +89,14 @@ class _ConsultantListState extends State<ConsultantList> {
         }
 
         return Container(
-          child: new ListView(
-            children: snapshot.data.docs.map((DocumentSnapshot document) {             
+          child: ListView(
+            children: snapshot.data.docs.map((DocumentSnapshot document) {
               return consultantListItem(
-                 name: document.data()['name'],
-                 email: document.data()['email'],
-                 qualification: document.data()['qualification'],
-                 experience: document.data()['experience'].toString(),
-                context: context);
+                  name: document.data()['name'],
+                  email: document.data()['email'],
+                  qualification: document.data()['qualification'],
+                  experience: document.data()['experience'].toString(),
+                  context: context);
             }).toList(),
           ),
         );

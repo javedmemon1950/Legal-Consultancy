@@ -18,10 +18,10 @@ void navigateToSignUpScreen(BuildContext context) {
       .push(MaterialPageRoute(builder: (context) => SignupScreen()));
 }
 
-void navigateToConsultantList(BuildContext context) {
-  Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => ConsultantList()));
-}
+// void navigateToConsultantList(BuildContext context) {
+//   Navigator.of(context)
+//       .push(MaterialPageRoute(builder: (context) => ConsultantList()));
+// }
 
 void navigateToConsultantProfile(BuildContext context, String consultantReference) {
   Navigator.of(context)

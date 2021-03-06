@@ -16,7 +16,7 @@ class _DashboardState extends State<Dashboard> {
         padding: const EdgeInsets.all(16.0),
         child: RaisedButton(
           onPressed: () => {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ConsultantList()))
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ConsultantList(menuItem)))
           },
           color: Color.fromRGBO(00, 69, 69, .8),
           child: Column(
@@ -57,7 +57,7 @@ class _DashboardState extends State<Dashboard> {
             dashboardMenu('Civil', 'assets/dashboard/civil.png'),
             dashboardMenu('Criminal', 'assets/dashboard/criminal.png'),
             dashboardMenu('Cyber Crime', 'assets/dashboard/cyber.png'),
-            dashboardMenu('Divorse', 'assets/dashboard/divorse.png'),
+            dashboardMenu('Divorce', 'assets/dashboard/divorse.png'),
             dashboardMenu('Finance', 'assets/dashboard/finance.png'),
             dashboardMenu('Tax', 'assets/dashboard/tax.png'),
             dashboardMenu('Harrasement', 'assets/dashboard/harrasement.png'),
