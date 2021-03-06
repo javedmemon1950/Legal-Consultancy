@@ -24,17 +24,19 @@ class _ChatsState extends State<Chats> {
       ),
       body: Container(
         child: fetchChats(),
-        // child: RaisedButton(
-        //   onPressed: () {
-        //     print(isConsultant);
-        //   },
-        // ),
       ),
     );
   }
 
   fetchChats() {
-    CollectionReference chats = FirebaseFirestore.instance.collection('chats');
+    Query chats;
+    if(isConsultant){
+      chats = FirebaseFirestore.instance.collection('chats').where('consultant', isEqualTo: user.email);
+    }
+    else{
+      chats = FirebaseFirestore.instance.collection('chats').where('user', isEqualTo: user.email);
+    }
+
     return StreamBuilder<QuerySnapshot>(
       stream: chats.snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -71,36 +73,3 @@ class _ChatsState extends State<Chats> {
     );
   }
 }
-
-// Widget chatListItem() {
-//   return Padding(
-//     padding: const EdgeInsets.all(8.0),
-//     child: Row(
-//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//       children: [
-//         CircleAvatar(
-//           backgroundColor: Colors.white,
-//           child: Image(
-//             image: AssetImage('assets/avatar_icon.png'),
-//           ),
-//         ),
-//         Expanded(
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Text(
-//                 "Username",
-//                 style: TextStyle(
-//                   fontSize: 18,
-//                   fontWeight: FontWeight.bold,
-//                 ),
-//               ),
-//               Text("Last Message"),
-//             ],
-//           ),
-//         ),
-//         Text("Date or Time")
-//       ],
-//     ),
-//   );
-// }
